@@ -17,7 +17,7 @@
  * - EEPROM settings storage / Хранение настроек в EEPROM
  * - LCD display with rotary encoder navigation / LCD дисплей с навигацией энкодером
  * 
- * GitHub: https://github.com/yourusername/ClimateControlSystem
+ * GitHub: https://github.com/01MEG10/ClimateControlSystem
  */
 
 #include <EEPROM.h>
