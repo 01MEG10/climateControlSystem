@@ -234,77 +234,77 @@ MAIN MENU
 ## Project architecture
 ```mermaid
 graph TB
-    START[Запуск системы] --> SETUP[Настройка]
+    START[System Start] --> SETUP[Setup]
     
-    SETUP --> INIT_PINS[Инициализация пинов]
-    SETUP --> INIT_SERIAL[Инициализация Serial]
-    SETUP --> INIT_RTC[Инициализация RTC]
-    SETUP --> INIT_LCD[Инициализация LCD]
-    SETUP --> INIT_ENCODER[Инициализация энкодера]
-    SETUP --> INIT_WATCHDOG[Инициализация Watchdog]
-    SETUP --> LOAD_SETTINGS[Загрузка настроек из EEPROM]
+    SETUP --> INIT_PINS[Initialize Pins]
+    SETUP --> INIT_SERIAL[Initialize Serial]
+    SETUP --> INIT_RTC[Initialize RTC]
+    SETUP --> INIT_LCD[Initialize LCD]
+    SETUP --> INIT_ENCODER[Initialize Encoder]
+    SETUP --> INIT_WATCHDOG[Initialize Watchdog]
+    SETUP --> LOAD_SETTINGS[Load Settings from EEPROM]
     
-    LOAD_SETTINGS --> MAIN_LOOP[Главный цикл]
+    LOAD_SETTINGS --> MAIN_LOOP[Main Loop]
     
-    MAIN_LOOP --> UPDATE_RTC[Обновление времени RTC]
-    UPDATE_RTC --> UPDATE_LIGHT_SCHEDULE[Обновление расписания освещения]
+    MAIN_LOOP --> UPDATE_RTC[Update RTC Time]
+    UPDATE_RTC --> UPDATE_LIGHT_SCHEDULE[Update Light Schedule]
     
-    MAIN_LOOP --> CHECK_SENSORS{Проверка таймера датчиков}
-    CHECK_SENSORS -->|Да| READ_SENSORS[Чтение датчиков]
-    READ_SENSORS --> PROCESS_MEASUREMENTS[Обработка измерений]
+    MAIN_LOOP --> CHECK_SENSORS{Sensor Timer Check}
+    CHECK_SENSORS -->|Yes| READ_SENSORS[Read Sensors]
+    READ_SENSORS --> PROCESS_MEASUREMENTS[Process Measurements]
     
-    PROCESS_MEASUREMENTS --> CHECK_VALIDITY{Данные валидны?}
-    CHECK_VALIDITY -->|Да| CONTROL_TEMP[Управление температурой]
-    CHECK_VALIDITY -->|Да| CONTROL_HUMID[Управление влажностью]
-    CHECK_VALIDITY -->|Да| CONTROL_LIGHT[Управление светом]
-    CHECK_VALIDITY -->|Нет| INCREMENT_ERRORS[Увеличение счетчика ошибок]
+    PROCESS_MEASUREMENTS --> CHECK_VALIDITY{Data Valid?}
+    CHECK_VALIDITY -->|Yes| CONTROL_TEMP[Control Temperature]
+    CHECK_VALIDITY -->|Yes| CONTROL_HUMID[Control Humidity]
+    CHECK_VALIDITY -->|Yes| CONTROL_LIGHT[Control Light]
+    CHECK_VALIDITY -->|No| INCREMENT_ERRORS[Increment Error Counter]
     
-    CONTROL_TEMP --> PID_CALCULATION[Расчет PID]
-    CONTROL_TEMP --> CHECK_SAFETY{Проверка безопасности}
-    CHECK_SAFETY -->|Норма| APPLY_PWM[Применение PWM к нагревателю]
-    CHECK_SAFETY -->|Перегрев| OVERHEAT_PROTECTION[Защита от перегрева]
+    CONTROL_TEMP --> PID_CALCULATION[PID Calculation]
+    CONTROL_TEMP --> CHECK_SAFETY{Safety Check}
+    CHECK_SAFETY -->|Normal| APPLY_PWM[Apply PWM to Heater]
+    CHECK_SAFETY -->|Overheat| OVERHEAT_PROTECTION[Overheat Protection]
     
-    CONTROL_HUMID --> CHECK_HYSTERESIS{Проверка гистерезиса}
-    CHECK_HYSTERESIS -->|Включить| HUMIDIFIER_ON[Включение увлажнителя]
-    CHECK_HYSTERESIS -->|Выключить| HUMIDIFIER_OFF[Выключение увлажнителя]
+    CONTROL_HUMID --> CHECK_HYSTERESIS{Check Hysteresis}
+    CHECK_HYSTERESIS -->|Turn On| HUMIDIFIER_ON[Turn Humidifier ON]
+    CHECK_HYSTERESIS -->|Turn Off| HUMIDIFIER_OFF[Turn Humidifier OFF]
     
-    CONTROL_LIGHT --> CHECK_SCHEDULE{Расписание активно?}
-    CHECK_SCHEDULE -->|Да| CALCULATE_LIGHT[Расчет уровня света по времени]
-    CHECK_SCHEDULE -->|Нет| LIGHT_OFF[Свет выключен]
-    CALCULATE_LIGHT --> APPLY_LIGHT_PWM[Применение PWM к свету]
+    CONTROL_LIGHT --> CHECK_SCHEDULE{Schedule Active?}
+    CHECK_SCHEDULE -->|Yes| CALCULATE_LIGHT[Calculate Light Level by Time]
+    CHECK_SCHEDULE -->|No| LIGHT_OFF[Light OFF]
+    CALCULATE_LIGHT --> APPLY_LIGHT_PWM[Apply PWM to Light]
     
-    MAIN_LOOP --> CHECK_SERIAL{Команды Serial?}
-    CHECK_SERIAL -->|Да| PROCESS_COMMAND[Обработка команд]
-    PROCESS_COMMAND --> STATUS[Статус]
-    PROCESS_COMMAND --> SET_TIME[Установка времени]
-    PROCESS_COMMAND --> SET_TEMP[Установка температуры]
-    PROCESS_COMMAND --> SET_HUMID[Установка влажности]
-    PROCESS_COMMAND --> SET_LIGHT[Настройка света]
-    PROCESS_COMMAND --> EMERGENCY_STOP[Аварийная остановка]
-    PROCESS_COMMAND --> RESET[Сброс системы]
+    MAIN_LOOP --> CHECK_SERIAL{Serial Commands?}
+    CHECK_SERIAL -->|Yes| PROCESS_COMMAND[Process Commands]
+    PROCESS_COMMAND --> STATUS[Status]
+    PROCESS_COMMAND --> SET_TIME[Set Time]
+    PROCESS_COMMAND --> SET_TEMP[Set Temperature]
+    PROCESS_COMMAND --> SET_HUMID[Set Humidity]
+    PROCESS_COMMAND --> SET_LIGHT[Configure Light]
+    PROCESS_COMMAND --> EMERGENCY_STOP[Emergency Stop]
+    PROCESS_COMMAND --> RESET[Reset System]
     
-    MAIN_LOOP --> UPDATE_LCD[Обновление LCD дисплея]
-    UPDATE_LCD --> DISPLAY_MAIN[Главный экран]
-    UPDATE_LCD --> DISPLAY_MENU[Меню]
-    UPDATE_LCD --> DISPLAY_SETTINGS[Настройки]
+    MAIN_LOOP --> UPDATE_LCD[Update LCD Display]
+    UPDATE_LCD --> DISPLAY_MAIN[Main Screen]
+    UPDATE_LCD --> DISPLAY_MENU[Menu]
+    UPDATE_LCD --> DISPLAY_SETTINGS[Settings]
     
-    MAIN_LOOP --> UPDATE_ENCODER[Обработка энкодера]
-    UPDATE_ENCODER --> ROTATION[Вращение]
-    UPDATE_ENCODER --> BUTTON[Нажатие кнопки]
-    ROTATION --> NAVIGATE_MENU[Навигация по меню]
-    BUTTON --> SELECT_ITEM[Выбор пункта]
+    MAIN_LOOP --> UPDATE_ENCODER[Process Encoder]
+    UPDATE_ENCODER --> ROTATION[Rotation]
+    UPDATE_ENCODER --> BUTTON[Button Press]
+    ROTATION --> NAVIGATE_MENU[Navigate Menu]
+    BUTTON --> SELECT_ITEM[Select Item]
     
-    MAIN_LOOP --> MONITOR_HEALTH[Мониторинг состояния]
-    MONITOR_HEALTH --> CHECK_EMERGENCY{Аварийная кнопка?}
-    CHECK_EMERGENCY -->|Нажата| ACTIVATE_EMERGENCY[Активация аварийного режима]
-    MONITOR_HEALTH --> CHECK_WATCHDOG[Кормление Watchdog]
-    MONITOR_HEALTH --> CHECK_ERRORS{Слишком много ошибок?}
-    CHECK_ERRORS -->|Да| SYSTEM_RESET[Сброс системы]
+    MAIN_LOOP --> MONITOR_HEALTH[Health Monitoring]
+    MONITOR_HEALTH --> CHECK_EMERGENCY{Emergency Button?}
+    CHECK_EMERGENCY -->|Pressed| ACTIVATE_EMERGENCY[Activate Emergency Mode]
+    MONITOR_HEALTH --> CHECK_WATCHDOG[Feed Watchdog]
+    MONITOR_HEALTH --> CHECK_ERRORS{Too Many Errors?}
+    CHECK_ERRORS -->|Yes| SYSTEM_RESET[System Reset]
     
-    MAIN_LOOP --> UPDATE_STATUS[Обновление статуса системы]
+    MAIN_LOOP --> UPDATE_STATUS[Update System Status]
     
-    ACTIVATE_EMERGENCY --> TURN_OFF_ALL[Отключение всех устройств]
-    SYSTEM_RESET --> REINITIALIZE[Повторная инициализация]
+    ACTIVATE_EMERGENCY --> TURN_OFF_ALL[Turn Off All Devices]
+    SYSTEM_RESET --> REINITIALIZE[Reinitialize]
     
     TURN_OFF_ALL --> MAIN_LOOP
     REINITIALIZE --> MAIN_LOOP
