@@ -1,0 +1,25 @@
+# Compiled files
+*.elf
+*.bin
+*.hex
+*.eep
+*.lss
+*.sym
+*.map
+
+# IDE files
+.vscode/
+.idea/
+
+# Build directories
+build/
+.Debug/
+.Release/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*~
