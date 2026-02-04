@@ -142,7 +142,7 @@ Power Connections:
 
 - LCD I2C: VCC → 5V, GND → GND, SDA → 20, SCL → 21
 
-- KY-018: CLK → 11, DT → 12, SW → 13, + → 5V, GND → GND
+- KY-040: CLK → 11, DT → 12, SW → 13, + → 5V, GND → GND
 
 - LDR: One leg → 5V, Other leg → A0 + 10kΩ to GND
 
