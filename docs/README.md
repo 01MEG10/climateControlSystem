@@ -147,7 +147,7 @@ Power Connections:
 - LDR: One leg → 5V, Other leg → A0 + 10kΩ to GND
 
 ### 4. Arduino IDE Configuration
-1. Open Climat_control_system.cpp in Arduino IDE
+1. Open Climat_control_system.ino in Arduino IDE
 
 2. Select board: Tools → Board → Arduino Mega or Mega 2560
 
@@ -155,9 +155,7 @@ Power Connections:
 
 4. Select port: Tools → Port → COMx (Arduino Mega)
 
-5. Optimize: Tools → Optimize → "Smallest Code"
-
-6. Verify: Sketch → Verify/Compile (Ctrl+R)
+5. Verify: Sketch → Verify/Compile (Ctrl+R)
 
 
 
