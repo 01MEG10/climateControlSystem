@@ -9,12 +9,12 @@ A comprehensive embedded system for climate control featuring real-time monitori
 
 ### Recommended Microcontrollers:
 
-| Board | Flash Memory | RAM | Recommended | Notes |
-|-------|-------------|-----|-------------|-------|
-| **Arduino Mega 2560** | 256KB | 8KB | ✅ Highly Recommended | Best compatibility, 70+ digital pins |
-| **ESP32** | 4MB+ | 520KB | ✅ Excellent | Built-in WiFi/Bluetooth, more powerful |
-| **Arduino Due** | 512KB | 96KB | ✅ Great | 32-bit ARM Cortex-M3, 84MHz |
-| **Teensy 4.0** | 2MB | 1MB | ✅ Excellent | 600MHz, very fast, lots of memory |
+| Board | Flash Memory | RAM | Recommended | 
+|-------|-------------|-----|-------------|
+| **Arduino Mega 2560** | 256KB | 8KB | ✅ Highly Recommended |
+| **ESP32** | 4MB+ | 520KB | ✅ Excellent |
+| **Arduino Due** | 512KB | 96KB | ✅ Great | 
+| **Teensy 4.0** | 2MB | 1MB | ✅ Excellent |
 | **Arduino Nano** | 32KB | 2KB | ❌ Will NOT work | Too small |
 | **Arduino Uno** | 32KB | 2KB | ❌ Will NOT work | Too small |
 
